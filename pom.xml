@@ -58,12 +58,16 @@
                         <configuration>
                             <target>
                                 <echo message="download archive" />
-                                <get src="${upstream.url}" dest="${project.build.directory}/${project.artifactId}.zip" />
+                                <get src="https://github.com/ShaggyYeti/coffee-react-transform/archive/compiled.zip" dest="${project.build.directory}/${project.artifactId}.zip" />
                                 <echo message="unzip archive" />
                                 <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${project.build.directory}" />
                                 <echo message="moving resources" />
                                 <move todir="${destDir}">
-                                    <fileset dir="${project.build.directory}/${project.artifactId}-${upstream.version}" />
+				    <fileset dir="${project.build.directory}/${project.artifactId}-compiled/bin" />
+				    <fileset dir="${project.build.directory}/${project.artifactId}-compiled/lib" />
+				    <fileset dir="${project.build.directory}/${project.artifactId}-compiled/package.json" />
+				    <fileset dir="${project.build.directory}/${project.artifactId}-compiled/index.js" />
+				    <fileset dir="${project.build.directory}/${project.artifactId}-compiled/README.md" />
                                 </move>
                             </target>
                         </configuration>
