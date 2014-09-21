@@ -62,13 +62,15 @@
                                 <echo message="unzip archive" />
                                 <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${project.build.directory}" />
                                 <echo message="moving resources" />
-                                <move todir="${destDir}">
+				<move todir="${destDir}/bin">
 				    <fileset dir="${project.build.directory}/${project.artifactId}-compiled/bin" />
+				</move>
+				<move todir="${destDir}/lib">
 				    <fileset dir="${project.build.directory}/${project.artifactId}-compiled/lib" />
-				    <fileset dir="${project.build.directory}/${project.artifactId}-compiled/package.json" />
-				    <fileset dir="${project.build.directory}/${project.artifactId}-compiled/index.js" />
-				    <fileset dir="${project.build.directory}/${project.artifactId}-compiled/README.md" />
-                                </move>
+				</move>
+				<move file="${project.build.directory}/${project.artifactId}-compiled/package.json" todir="${destDir}" />
+				<move file="${project.build.directory}/${project.artifactId}-compiled/index.js" todir="${destDir}" />
+				<move file="${project.build.directory}/${project.artifactId}-compiled/README.md" todir="${destDir}" />
                             </target>
                         </configuration>
                     </execution>
