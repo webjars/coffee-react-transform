@@ -7,7 +7,7 @@
         <artifactId>oss-parent</artifactId>
         <version>7</version>
     </parent>
-    
+
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>coffee-react-transform</artifactId>
@@ -18,8 +18,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <upstream.version>0.5.1</upstream.version>
-        <upstream.url>https://github.com/jsdf/coffee-react-transform/archive/v${upstream.version}.zip</upstream.url>
+        <upstream.version>0.5.2-SNAPSHOT</upstream.version>
+        <upstream.url>https://github.com/ShaggyYeti/coffee-react-transform/archive/v${upstream.version}.zip</upstream.url>
         <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${version}</destDir>
     </properties>
 
@@ -44,7 +44,7 @@
         <developerConnection>scm:git:https://github.com/webjars/coffee-react-transform.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
-    
+
     <build>
         <plugins>
             <plugin>
@@ -57,20 +57,20 @@
                         <goals><goal>run</goal></goals>
                         <configuration>
                             <target>
-                                <echo message="download archive" />
-                                <get src="https://github.com/ShaggyYeti/coffee-react-transform/archive/compiled.zip" dest="${project.build.directory}/${project.artifactId}.zip" />
-                                <echo message="unzip archive" />
-                                <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${project.build.directory}" />
-                                <echo message="moving resources" />
-				<move todir="${destDir}/bin">
-				    <fileset dir="${project.build.directory}/${project.artifactId}-compiled/bin" />
-				</move>
-				<move todir="${destDir}/lib">
-				    <fileset dir="${project.build.directory}/${project.artifactId}-compiled/lib" />
-				</move>
-				<move file="${project.build.directory}/${project.artifactId}-compiled/package.json" todir="${destDir}" />
-				<move file="${project.build.directory}/${project.artifactId}-compiled/index.js" todir="${destDir}" />
-				<move file="${project.build.directory}/${project.artifactId}-compiled/README.md" todir="${destDir}" />
+                                <echo message="download archive"/>
+                                <get src="${upstream.url}" dest="${project.build.directory}/${project.artifactId}.zip"/>
+                                <echo message="unzip archive"/>
+                                <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${project.build.directory}"/>
+                                <echo message="moving resources"/>
+                                <move todir="${destDir}/bin">
+                                    <fileset dir="${project.build.directory}/${project.artifactId}-${upstream.version}/bin"/>
+                                </move>
+                                <move todir="${destDir}/lib">
+                                    <fileset dir="${project.build.directory}/${project.artifactId}-${upstream.version}/lib"/>
+                                </move>
+                                <move file="${project.build.directory}/${project.artifactId}-${upstream.version}/package.json" todir="${destDir}"/>
+                                <move file="${project.build.directory}/${project.artifactId}-${upstream.version}/index.js" todir="${destDir}"/>
+                                <move file="${project.build.directory}/${project.artifactId}-${upstream.version}/README.md" todir="${destDir}"/>
                             </target>
                         </configuration>
                     </execution>
